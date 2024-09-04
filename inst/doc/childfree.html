@@ -413,9 +413,9 @@ Please report bugs in the backbone package at <a href="https://github.com/zpneal
 <h2>Loading the package</h2>
 <p>The childfree package can be loaded in the usual way:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(childfree)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; N   ▇─┬─O   childfree v0.0.2</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;  O    ┆     CITE: Neal, Z. P. and Neal, J. W., (2024). Childfree: An R package to access</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;   K   ▇─┬─O and harmonize childfree demographic data. CRAN.</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; N   ▇─┬─O   childfree v0.0.3</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;  O    ┆     CITE: Neal, Z. P. and Neal, J. W., (2024). childfree: An R package to access and</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;   K   ▇─┬─O harmonize childfree demographic data. CRAN. https://doi.org/10.32614/CRAN.package.childfree</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;    I    ┆   HELP: type vignette(&quot;childfree&quot;); email zpneal@msu.edu; github zpneal/childfree</span></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt;     D   ╳   BETA: type devtools::install_github(&quot;zpneal/childfree&quot;, ref = &quot;devel&quot;)</span></span></code></pre></div>
 <p>Upon successful loading, a startup message will display that shows
@@ -553,9 +553,11 @@ function works. Running</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">dhs</span>(<span class="at">file =</span> <span class="st">&quot;ZZIR62FL.SAV&quot;</span>, <span class="at">extra.vars =</span> <span class="fu">c</span>(<span class="st">&quot;v201&quot;</span>, <span class="st">&quot;v602&quot;</span>, <span class="st">&quot;v613&quot;</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; Processing DHS data files -</span></span></code></pre></div>
 <p>imports the data, extracts and recodes variables, and returns an R
-dataframe called <code>dat</code>. Inspecting selected variables for a
-selected observation in <code>dat</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">t</span>(dat[<span class="dv">2368</span>,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">19</span><span class="sc">:</span><span class="dv">21</span>)])</span>
+dataframe called <code>dat</code>. If you are offline or these data are
+otherwise unavailable, then <code>dat &lt;- NULL</code>.</p>
+<p>Inspecting selected variables for a selected observation in
+<code>dat</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(dat)) {<span class="fu">t</span>(dat[<span class="dv">2368</span>,<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">19</span><span class="sc">:</span><span class="dv">21</span>)])}</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt;           2368       </span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt; famstat   &quot;Childfree&quot;</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; sex       &quot;Female&quot;   </span></span>
@@ -564,9 +566,9 @@ selected observation in <code>dat</code></p>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; partnered &quot;Never&quot;    </span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; residence &quot;Urban&quot;    </span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; employed  &quot;0&quot;        </span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; v201      &quot;0&quot;        </span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; v602      &quot;3&quot;        </span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; v613      &quot;0&quot;</span></span></code></pre></div>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#&gt; year      &quot;2015&quot;     </span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#&gt; month     &quot;August&quot;   </span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; v201      &quot;0&quot;</span></span></code></pre></div>
 <p>we see that it contains the record of an unemployed 18 year old
 female, who has completed 12 years of education, and is currently
 single, living in an urban area. She is classified as childfree because
@@ -601,10 +603,11 @@ and 2019 using:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">nsfg</span>(<span class="at">years =</span> <span class="dv">2017</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; Processing NSFG data files -</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%</span></span></code></pre></div>
-<p>which returns the data in a dataframe called <code>dat</code>.
-Inspecting selected variables for a selected observation in
-<code>dat</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">t</span>(dat[<span class="dv">14</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<p>which returns the data in a dataframe called <code>dat</code>. If you
+are offline or these data are otherwise unavailable, then
+<code>dat &lt;- NULL</code>. Inspecting selected variables for a
+selected observation in <code>dat</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(dat)) {<span class="fu">t</span>(dat[<span class="dv">14</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])}</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt;           14                </span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; famstat   &quot;Childfree&quot;       </span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt; sex       &quot;Female&quot;          </span></span>
@@ -643,10 +646,11 @@ collected in April 2022 using:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">soss</span>(<span class="at">waves =</span> <span class="dv">84</span>, <span class="at">extra.vars =</span> (<span class="fu">c</span>(<span class="st">&quot;neal1&quot;</span>, <span class="st">&quot;neal2&quot;</span>, <span class="st">&quot;neal3&quot;</span>)))</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt; Processing SOSS data files -</span></span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span></code></pre></div>
-<p>which returns the data in a dataframe called <code>dat</code>.
-Inspecting selected variables for a selected observation in
-<code>dat</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">t</span>(dat[<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span><span class="sc">:</span><span class="dv">13</span>,<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>)])</span>
+<p>which returns the data in a dataframe called <code>dat</code>. If you
+are offline or these data are otherwise unavailable, then
+<code>dat &lt;- NULL</code>. Inspecting selected variables for a
+selected observation in <code>dat</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(dat)) {<span class="fu">t</span>(dat[<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span><span class="sc">:</span><span class="dv">13</span>,<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>)])}</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt;           2                           </span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; famstat   &quot;Childfree&quot;                 </span></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; sex       &quot;Female&quot;                    </span></span>
