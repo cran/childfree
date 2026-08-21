@@ -1,6 +1,8 @@
 ## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 knitr::opts_knit$set(global.par = TRUE)
+old.timeout <- getOption("timeout")
+options(timeout = 500)
 
 ## ----setup--------------------------------------------------------------------
 library(childfree)
@@ -22,4 +24,7 @@ dat <- soss(waves = 84, extra.vars = (c("neal1", "neal2", "neal3")))
 
 ## -----------------------------------------------------------------------------
 if (!is.null(dat)) {t(dat[2,c(2:9,12:13,21:24)])}
+
+## -----------------------------------------------------------------------------
+options(timeout = old.timeout)
 

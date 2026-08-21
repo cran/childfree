@@ -150,7 +150,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 div.csl-bib-body { }
 div.csl-entry {
 clear: both;
-margin-bottom: 0em;
 }
 .hanging div.csl-entry {
 margin-left:2em;
@@ -414,7 +413,7 @@ Please report bugs in the backbone package at <a href="https://github.com/zpneal
 <h2>Loading the package</h2>
 <p>The childfree package can be loaded in the usual way:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(childfree)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; N   ▇─┬─O   childfree v0.0.5</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#&gt; N   ▇─┬─O   childfree v0.0.6</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt;  O    ┆     CITE: Neal, Z. P. and Neal, J. W., (2024). childfree: An R package to access and</span></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt;   K   ▇─┬─O harmonize childfree demographic data. CRAN. https://doi.org/10.32614/CRAN.package.childfree</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt;    I    ┆   HELP: type vignette(&quot;childfree&quot;); email zpneal@msu.edu; github zpneal/childfree</span></span>
@@ -646,13 +645,27 @@ variables, and returns a ready-to-use dataframe.</p>
 collected in April 2022 using:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">soss</span>(<span class="at">waves =</span> <span class="dv">84</span>, <span class="at">extra.vars =</span> (<span class="fu">c</span>(<span class="st">&quot;neal1&quot;</span>, <span class="st">&quot;neal2&quot;</span>, <span class="st">&quot;neal3&quot;</span>)))</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co">#&gt; Processing SOSS data files -</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; You are offline or SOSS data is not available now. Try again later</span></span></code></pre></div>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt;   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span></span></code></pre></div>
 <p>which returns the data in a dataframe called <code>dat</code>. If you
 are offline or these data are otherwise unavailable, then
 <code>dat &lt;- NULL</code>. Inspecting selected variables for a
 selected observation in <code>dat</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(dat)) {<span class="fu">t</span>(dat[<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span><span class="sc">:</span><span class="dv">13</span>,<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>)])}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(dat)) {<span class="fu">t</span>(dat[<span class="dv">2</span>,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span><span class="sc">:</span><span class="dv">13</span>,<span class="dv">21</span><span class="sc">:</span><span class="dv">24</span>)])}</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt;           2                           </span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; famstat   &quot;Childfree&quot;                 </span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt; sex       &quot;Female&quot;                    </span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; lgbt      &quot;1&quot;                         </span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; race      &quot;White&quot;                     </span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; hispanic  &quot;0&quot;                         </span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; age       &quot;60&quot;                        </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; education &quot;College graduate&quot;          </span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; partnered &quot;Currently&quot;                 </span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; inschool  &quot;0&quot;                         </span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; ideology  &quot;Closer to the liberal side&quot;</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; year      &quot;2022&quot;                      </span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; month     &quot;April&quot;                     </span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; neal1     &quot;2&quot;                         </span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; neal2     &quot;2&quot;</span></span></code></pre></div>
 <p>we see that it contains the record of a 60 year old non-hispanic
 white female. She is a college graduate living with her partner in the
 suburbs, and identifies as slightly liberal, but not as religious. She
@@ -671,11 +684,12 @@ no). In practice, using the <code>extra.vars</code> option can be useful
 to retain other information collected by IPPSR, but that is not
 automatically included.</p>
 <p><a href="#toc">back to Table of Contents</a></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">timeout =</span> old.timeout)</span></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-neal2023framework" class="csl-entry">
 Neal, Zachary P, and Jennifer Watling Neal. 2023. <span>“A Framework for
 Studying Adults Who Neither Have nor Want Children.”</span> <em>The
